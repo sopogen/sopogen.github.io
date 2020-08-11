@@ -23,8 +23,8 @@ repository: ShawnTeoh/matjek
 paginate: 5
 
 # MatJek specific configurations
-github_profile: "https://github.com/ShawnTeoh"
-user: "John Doe"
+github_profile: "https://github.com/sopogen"
+user: "sopogen"
 user_email: "john@doe.com"
 contact_url: "https://goo.gl/tVljbV"
 google_tracking_id: "UA-96359860-1"

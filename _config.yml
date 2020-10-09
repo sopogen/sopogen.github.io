@@ -33,6 +33,10 @@ disqus_shortname: "matjek"
 
 # Build settings
 markdown: kramdown
+highlighter: rouge
+lsi: false
+excerpt_separator: "\n\n"
+incremental: false
 gems:
   - jekyll-feed
   - jekyll-paginate

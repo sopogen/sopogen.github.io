@@ -1,3 +1,11 @@
+layout: post
+title:  "Docker Commands"
+date:   2021-05-25 12:00:00 +0800
+categories: Default
+tags: [Docker, github.io]
+comments: 1
+use_math: true
+
 # Docker Commands
 
 ---
@@ -16,7 +24,7 @@
         ```
 
     - -d (= -detach) : 컨테이너를 detach하여 백그라운드에 돌아가는 프로그램으로 실행한다.
-        
+      
         - 만약 컨테이너 내에 포어그라운드로 돌아갈 프로그램이 설정되어 있지 않다면 -d 로 docker run을 한 순간 컨테이너가 종료된다.
     - -e (= --env) : 컨테이너의 환경변수를 설정한다.
     - -v (= --volume) : 볼륨 컨테이너 설정
@@ -59,7 +67,7 @@
 
     - -t : 로그에  타임스탬프 출력 가능
     - -f : 로그를 스트림으로 확인
-        
+      
         - ctrl + c로 탈출 가능
 
 - docker stop

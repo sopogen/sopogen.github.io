@@ -1,9 +1,12 @@
----
+# Docker Container Resource Control 
 
 - 컨테이를 생성할 때 자원 할당량을 정해주지 않으면, 제한 없이 자원을 사용하게 됨
+
 - 컨테이너 생성시에 메모리, cpu 등의 자원할당을 미리 정해줄 수 있음
 
-### 메모리 할당
+  
+
+##### 메모리 할당
 
 ---
 
@@ -14,7 +17,9 @@
 docker run --memory="1g" --memory-swap="2g" $(DOCKER_IMAGE)
 ```
 
-### CPU 할당
+
+
+##### CPU 할당
 
 ---
 
@@ -26,7 +31,9 @@ docker run --memory="1g" --memory-swap="2g" $(DOCKER_IMAGE)
 docker run --cpu-shares 1024 --cpuset-cpus:2 --cpus:1 $(DOCKER_IMAGE)
 ```
 
-### Block I/O 할당
+
+
+##### Block I/O 할당
 
 ---
 

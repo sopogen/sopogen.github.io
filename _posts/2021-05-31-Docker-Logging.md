@@ -1,12 +1,12 @@
----
-
 - 도커의 컨테이너 로그는 보통 JSON 형태로 컨테이너 내에 저장된다. 밑의 명령어로 확인 가능.
 
     ```jsx
     # cat /var/lib/docker/containers/${CONTAINER_ID}/${CONTAINER_ID}-json.log
     ```
 
-### Log driver
+
+
+##### Log driver
 
 - 다양한 로그 드라이버를 사용할 수 있다. Default는 json
 

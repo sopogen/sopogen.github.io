@@ -1,5 +1,6 @@
 lang:                  en
-title:                 Hydejack
+title:                 Jihwan Kim
+tagline:               Mirror Installer
 copyright:             © 2021. All rights reserved.
 
 accent_image:          /assets/img/sidebar-bg.jpg
@@ -75,3 +76,21 @@ sass:
 
 plugins:
   - jekyll-include-cache
+
+menu:
+- title: Blog
+  url:   /blog/
+- title: Devlog
+  url:   /devlog/
+- title: Resume
+  url:   /resume/
+- title: About
+  url:   /about/
+
+collections:
+  featured_categories:
+    permalink:         /:name/
+    output:            true
+  featured_tags:
+    permalink:         /tag-:name/
+    output:            true

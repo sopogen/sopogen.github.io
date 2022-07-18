@@ -1,10 +1,10 @@
 ---
 layout: list
 type: category
-title: Devlog
-slug: devlog
+title: Studylog
+slug: studylog
 menu: true
 order: 1
 description: >
-  What I've developed
+  What I've studied
 ---

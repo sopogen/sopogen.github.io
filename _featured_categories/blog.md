@@ -1,10 +1,10 @@
 ---
 layout: list
 type: category
-title: Devlog
-slug: devlog
+title: Blog
+slug: blog
 menu: true
-order: 1
+order: 2
 description: >
-  What I've developed
+  What I've experienced
 ---

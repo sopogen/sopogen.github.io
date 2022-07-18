@@ -78,10 +78,14 @@ plugins:
   - jekyll-include-cache
 
 menu:
+- title: Home
+  url:   /
 - title: Blog
   url:   /blog/
 - title: Devlog
   url:   /devlog/
+- title: Studylog
+  url:   /studylog/
 - title: Resume
   url:   /resume/
 - title: About

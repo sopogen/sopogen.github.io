@@ -4,7 +4,7 @@ type: category
 title: Blog
 slug: blog
 menu: true
-order: 2
+order: 1
 description: >
   What I've experienced
 ---

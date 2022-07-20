@@ -4,7 +4,7 @@ type: category
 title: Studylog
 slug: studylog
 menu: true
-order: 1
+order: 3
 description: >
   What I've studied
 ---

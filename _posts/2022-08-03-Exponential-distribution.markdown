@@ -4,7 +4,7 @@ title:  "지수분포"
 date:   2022-08-03 12:00:00 +0800
 categories: [blog]
 tags: [blog]
-comments: 1
+comments: true
 use_math: true
 ---
 

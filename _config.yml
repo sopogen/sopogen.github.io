@@ -1,6 +1,6 @@
 lang:                  en
-title:                 Jihwan Kim
-tagline:               Install mirror
+title:                 Sopogen
+tagline:               Escaping Seoul
 copyright:             © 2021. All rights reserved.
 
 accent_image:          /assets/img/seoul.jpg
@@ -106,9 +106,16 @@ kramdown:
   math_engine: mathjax
   math_engine_opts: {}
 
-defaults:
+defaults: 
   - scope:
       path:         /
     values:
       accent_image: /assets/img/seoul.jpg
       accent_color: rgb(38,139,210)
+
+author:
+  name: Jihwan Kim
+  email: spacefor555@gmail.com
+  social:
+    github: sopogen
+    email: spacefor555@gmail.com

@@ -105,3 +105,10 @@ collections:
 kramdown:
   math_engine: mathjax
   math_engine_opts: {}
+
+defaults:
+  - scope:
+      path:         /
+    values:
+      accent_image: /assets/img/seoul.jpg
+      accent_color: rgb(38,139,210)

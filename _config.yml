@@ -121,3 +121,9 @@ author:
     email: spacefor555@gmail.com
 
 disqus: sopogen-github-io.disqus.com
+
+feed:
+  categories:
+    - blog
+    - devlog
+    - studylog

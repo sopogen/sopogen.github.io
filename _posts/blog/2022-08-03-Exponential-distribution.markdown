@@ -2,8 +2,8 @@
 layout: post
 title:  "지수분포"
 date:   2022-08-03 12:00:00 +0800
-categories: [blog]
-tags: [blog]
+category: blog
+tag: blog
 comments: true
 use_math: true
 ---

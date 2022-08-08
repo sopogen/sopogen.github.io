@@ -6,6 +6,8 @@ category: blog
 tag: blog
 comments: true
 use_math: true
+img:
+    path: /assets/img/2022-08-03/sushi.png
 ---
 
 이 페이지에서는 '지수분포' 에 대해 설명합니다.  
@@ -17,9 +19,7 @@ use_math: true
 
 ##### 가게에 다음 손님이 올 때까지 걸리는 시간을 알 수 있을까? 
 
-<div>
-<width=400 src=https://user-images.githubusercontent.com/61009073/103454348-5ed44e00-4d26-11eb-8a6c-ed379129350a.png>
-</div>  
+![sushi](/assets/img/2022-08-03/sushi.png)
 
 초밥을 좋아하는 혜리는 이번에 새로 초밥뷔페를 열었습니다. 초밥뷔페는 갓 만든 초밥을 도착하고 바로 집어먹을 수 있어야만 모름지기 좋은 초밥뷔페일 것입니다. 때문에 혜리는 손님이 도착할 시간을 예측해서 그 직전에 초밥을 만들어 두려고 합니다.  
 

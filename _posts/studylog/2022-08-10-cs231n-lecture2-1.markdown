@@ -1,0 +1,71 @@
+---
+layout: post
+title:  "[cs231n] Lecture 2: 컴퓨터는 사진을 알아볼 수 없다"
+date:   2022-08-10 12:00:00 +0800
+category: studylog
+tags: [blog, cs231n]
+comments: true
+use_math: true
+img:
+    path: /assets/img/
+---
+
+![quotes](/assets/img/quotation_mark.jpeg){: width="30"}{:style="display:block; margin-left:auto; margin-right:auto; margin-bottom:3px"}
+## 컴퓨터는 사진을 알아볼 수 없다
+{:style="text-align:center; margin-top:0px"}
+
+
+![cat](/assets/img/2022-08-10/cat.png){: width="200"}{:style="display:block; margin-left:auto; margin-right:auto; padding:5px"}
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;위 사진은 무엇에 대한 사진일까요? 아마 4살짜리 제 조카에게 물어봐도 고양이라고 대답할 수 있을 겁니다. 대답하기 어려운 질문은 아니죠. 그런데 불과 몇 년 전까지만 해도, 컴퓨터는 이 사진이 고양이인지 잘 맞추지 못했습니다. 컴퓨터는 사람보다 훨씬 빠르게 계산할 수 있는데, 왜 간단한 고양이 사진은 잘 알아보지 못했던 걸까요?
+{:style="opacity: 0.90"}
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;다시 돌아와서, 이 사진이 그럼 왜 고양이처럼 보이는지 인간의 입장에서 생각해봅시다. 아마 보송보송한 털, 조그만 몸집, 네개의 다리, 길쭉한 수염 같은 '고양이의 시각적 특성'을 보고 유추했을 것입니다. **그런데 컴퓨터는 이렇게 사람이 이해하는 방식으로 사진을 알아볼 수 없습니다.**
+{:style="opacity: 0.90"}
+
+![cat_matrix](/assets/img/2022-08-10/cat_matrix.png){: width="400"}{:style="display:block; margin-left:auto; margin-right:auto; padding:10px"}
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;위의 숫자들은 **컴퓨터의 입장에서 본 고양이 사진**입니다. 컴퓨터가 인식하는 사진은 위 처럼 가로 픽셀 x 세로 픽셀 크기를 가지는 행렬의 형태이며, 이 행렬에서 각 원소의 값은 해당 픽셀이 얼마나 짙은가를 의미합니다. 컴퓨터는 이런 숫자들의 나열을 가지고 이제껏 사진을 바라보고 있던 것입니다. 
+{:style="opacity: 0.90"}
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;이 숫자들을 통해서는 고양이의 길쭉한 수염도, 보송보송한 털도 알아보기 힘들어 보입니다. 이쯤되면 컴퓨터가 사람처럼 '고양이의 시각적 특성' 을 가지고 사진을 판단하는 것은 거의 불가능해 보입니다. 이렇게 사람이 보는 사진의 모습, 컴퓨터가 보는 사진의 모습에 차이가 존재하는 것을 ***Semantic Gap*** 이라고 합니다. (원래는 조금 더 넓은 의미의 용어이나, 이에 대해서는 추후에 다루도록 하겠습니다.)
+{:style="opacity: 0.90; margin-bottom:80px"}
+
+---
+
+![quotes](/assets/img/quotation_mark.jpeg){: width="30"}{:style="display:block; margin-left:auto; margin-right:auto; margin-bottom:3px; margin-top:80px"}
+## 고양이를 고양이라고 부르는 것은 너무 어렵다
+{:style="text-align:center; margin-top:0px; margin-bottom:40px"}
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;이제는 컴퓨터가 왜 사진을 알아보기 힘들어 했는지 어느 정도 알 것 같습니다. 그런데 저 숫자들을 보고 누군가는 이렇게 생각해볼 수도 있을 것 같습니다. "어차피 고양이들은 다 비슷하게 생겼으니까, 저 숫자들의 양상도 비슷하게 나오는게 아닌가? 그러면 고양이라고 판단하기 충분한 정보가 있는거 아냐?"
+{:style="opacity: 0.90"}
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**결론부터 말씀드리면 아닙니다.** 정확히는 같은 고양이라고 해서, 숫자들의 양상이 비슷하게 나오는 것은 아닙니다. 만약 정말로 고양이들의 사진이 비슷한 숫자 행렬로 나오게 된다면, 컴퓨터가 그 비슷한 패턴을 배우게 하는 것은 어려운 일이 아니었을 겁니다. 그러나 아래의 여러가지 문제들로 인해, 같은 고양이 사진이더라도 매우 다른 숫자들로 나타날 수 있습니다.
+{:style="opacity: 0.90"}
+
+![cat_illumination](/assets/img/2022-08-10/cat_illumination.png){: width="300"}{:style="display:block; margin-left:auto; margin-right:auto; margin-top:30px"}
+- ***Illumination***: 같은 고양이더라도 사진을 찍을 때 광원이 어디 있느냐에 따라서 매우 다른 사진이 될 수 있습니다.
+<!-- {:style="text-align:center"} -->
+
+![cat_deformation](/assets/img/2022-08-10/cat_deformation.png){: width="300"}{:style="display:block; margin-left:auto; margin-right:auto; margin-top:30px"}
+- ***Deformation***: 같은 고양이더라도 어떤 자세를 하고 있느냐에 따라서 매우 다른 사진이 될 수 있습니다.
+<!-- {:style="text-align:center"} -->
+
+![cat_occlusion](/assets/img/2022-08-10/cat_occlusion.png){: width="300"}{:style="display:block; margin-left:auto; margin-right:auto; margin-top:30px"}
+- ***Occlusion***: 같은 고양이더라도 신체의 일부만 보일 수도 있습니다.
+<!-- {:style="text-align:center"} -->
+
+![cat_background](/assets/img/2022-08-10/cat_background.png){: width="300"}{:style="display:block; margin-left:auto; margin-right:auto; margin-top:30px"}
+- ***Background clutter***: 같은 고양이더라도 배경의 차이에 따라 사진이 다르게 나타날 수 있습니다. 특히 배경과 고양이가 비슷한 경우 더욱 판단하기 어려워집니다.
+<!-- {:style="text-align:center"} -->
+
+![cat_variation](/assets/img/2022-08-10/cat_variation.png){: width="300"}{:style="display:block; margin-left:auto; margin-right:auto; margin-top:30px"}
+- ***Deformation***: 고양이 안에서도 종류, 색깔별로 다른 고양이가 있습니다. 이렇게 다른 고양이들도 전부 고양이라고 판단할 수 있어야 합니다.
+<!-- {:style="text-align:center"} -->
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;결국 이와 같은 문제들로 인해 같은 고양이 사진도 굉장히 다양한 형태로 나타나게 됩니다. 따라서 숫자만 보고 고양이인지 아닌지를 판단해야 하는 컴퓨터의 입장에서는 더더욱 판단하기 어려울 겁니다. 여기까지 봤을 때, 컴퓨터가 사진에서 고양이를 판단해내는 것은 거의 불가능해 보입니다.
+{:style="opacity: 0.90; margin-bottom:80px"}
+
+---
+
+

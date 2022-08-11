@@ -1,7 +1,8 @@
 lang:                  en
 title:                 Sopogen
 tagline:               Escaping Seoul
-copyright:             © 2021. All rights reserved.
+copyright:             © 2022. All rights reserved.
+url:                   https://sopogen.github.io/
 
 accent_image:          /assets/img/seoul.jpg
 accent_color:          rgb(79,177,186)

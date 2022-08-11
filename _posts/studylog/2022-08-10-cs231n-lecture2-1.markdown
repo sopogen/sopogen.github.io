@@ -12,7 +12,7 @@ img:
 
 ![quotes](/assets/img/quotation_mark.jpeg){: width="30"}{:style="display:block; margin-left:auto; margin-right:auto; margin-bottom:3px"}
 ## 컴퓨터는 사진을 알아볼 수 없다
-{:style="text-align:center; margin-top:0px"}
+{:style="text-align:center; margin-top:0px; margin-bottom:30px"}
 
 
 ![cat](/assets/img/2022-08-10/cat.png){: width="200"}{:style="display:block; margin-left:auto; margin-right:auto; padding:5px"}
@@ -34,10 +34,10 @@ img:
 ---
 
 ![quotes](/assets/img/quotation_mark.jpeg){: width="30"}{:style="display:block; margin-left:auto; margin-right:auto; margin-bottom:3px; margin-top:80px"}
-## 고양이를 고양이라고 부르는 것은 너무 어렵다
+## 고양이를 고양이라고 알아보는 것은 너무 어렵다
 {:style="text-align:center; margin-top:0px; margin-bottom:40px"}
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;이제는 컴퓨터가 왜 사진을 알아보기 힘들어 했는지 어느 정도 알 것 같습니다. 그런데 저 숫자들을 보고 누군가는 이렇게 생각해볼 수도 있을 것 같습니다. "어차피 고양이들은 다 비슷하게 생겼으니까, 저 숫자들의 양상도 비슷하게 나오는게 아닌가? 그러면 고양이라고 판단하기 충분한 정보가 있는거 아냐?"
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;이제는 컴퓨터가 왜 사진을 알아보기 힘들어 했는지 어느 정도 알 것 같습니다. 그런데 저 숫자들을 보고 누군가는 이렇게 생각해볼 수도 있을 것 같습니다. "어차피 고양이들은 다 비슷하게 생겼으니까, 저 숫자들의 양상도 비슷하게 나오는게 아닌가? 그러면 고양이 데이터를 몇 개 외워 놓고, 숫자가 비슷한 사진들을 고양이라고 하면 되는거 아냐?"
 {:style="opacity: 0.90"}
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**결론부터 말씀드리면 아닙니다.** 정확히는 같은 고양이라고 해서, 숫자들의 양상이 비슷하게 나오는 것은 아닙니다. 만약 정말로 고양이들의 사진이 비슷한 숫자 행렬로 나오게 된다면, 컴퓨터가 그 비슷한 패턴을 배우게 하는 것은 어려운 일이 아니었을 겁니다. 그러나 아래의 여러가지 문제들로 인해, 같은 고양이 사진이더라도 매우 다른 숫자들로 나타날 수 있습니다.
@@ -63,9 +63,26 @@ img:
 - ***Deformation***: 고양이 안에서도 종류, 색깔별로 다른 고양이가 있습니다. 이렇게 다른 고양이들도 전부 고양이라고 판단할 수 있어야 합니다.
 <!-- {:style="text-align:center"} -->
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;결국 이와 같은 문제들로 인해 같은 고양이 사진도 굉장히 다양한 형태로 나타나게 됩니다. 따라서 숫자만 보고 고양이인지 아닌지를 판단해야 하는 컴퓨터의 입장에서는 더더욱 판단하기 어려울 겁니다. 여기까지 봤을 때, 컴퓨터가 사진에서 고양이를 판단해내는 것은 거의 불가능해 보입니다.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;결국 이와 같은 문제들로 인해 같은 고양이 사진도 굉장히 다양한 형태로 나타나게 됩니다. 따라서 숫자만 보고 고양이인지 아닌지를 판단해야 하는 컴퓨터의 입장에서는 더더욱 판단하기 어려울 겁니다. 여기까지 봤을 때, 컴퓨터가 어떤 사진이 고양이 사진이라고 판단하는 것은 생각보다 굉장히 어려운 일이라는 것을 알 수 있습니다.
 {:style="opacity: 0.90; margin-bottom:80px"}
 
 ---
+## Nearest Neighbor
+{:style="text-align:center; margin-top:0px; margin-bottom:40px; margin-top:80px"}
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 여태까지 고양이를 가지고 이야기 해왔지만, 특정 사진이 어떤 사물 또는 동물의 사진인지를 분류하는 광범위한 문제를 ***Image classification*** 문제라고 합니다. 이에 대한 활발한 연구가 태동하기 전까지, 컴퓨터는 위에 언급한 문제들을 안고갈 수 밖에 없는 알고리즘을 사용해서 Image classification을 수행했습니다. 그 대표격이라고 할 수 있는 것이 바로 ***Nearest Neighbor*** 알고리즘 입니다.
+{:style="opacity: 0.90"}
+
+ 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Nearest Neighbor 알고리즘의 컨셉은 이렇습니다.
+{:style="opacity: 0.90"}
+> 컴퓨터에게 다양한 학습용 사진 데이터 여러장을 전부 기억하게 한다. 그 후에 분류해야 하는 사진을 받으면 그 사진과 거리가 가장 가까운 학습 데이터를 기억해내서, 그 학습 데이터가 무슨 사진이었는지 말해준다.
+{:style="opacity: 0.90"}
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 가장 거리가 가까운 데이터를 이용해 사진을 분류한다는 점에서 이름이 Nearest Neighbor(가장 가까운 이웃)인 것입니다. 그런데 여기서 데이터 간의 거리는 어떻게 측정하는 것일까요? 위에서 컴퓨터는 사진을 숫자로 이뤄진 행렬로 인식한다고 살펴봤습니다. 행렬은 벡터를 여러 개 쌓아 놓은 것과 같으므로, 이 행렬을 쭉 펼처서 하나의 벡터로 만들면 사진을 하나의 벡터로 만들 수 있을 것입니다. 이렇게 만든 벡터 간의 거리를 구하는 것이 사진 간의 거리를 구하는 방법입니다.
+
+
+
+
 
 

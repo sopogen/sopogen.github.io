@@ -103,11 +103,3 @@ img:
 
 ## K-Nearest Neighbor
 {:style="text-align:center; margin-top:0px; margin-bottom:40px; margin-top:80px"}
-
-
-
-
-
-
-
-

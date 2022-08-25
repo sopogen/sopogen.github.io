@@ -105,3 +105,5 @@ img:
 {:style="text-align:center; margin-top:0px; margin-bottom:40px; margin-top:80px"}
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; K-Nearest Neighbor는 Nearest Neighbor 알고리즘과 거의 모든 부분에서 동일합니다. 그러나 Nearest Neighbor가 가장 가까운 이웃만을 보고 결정한다면, K-Nearest Neighbor는 가장 가까운 K명의 이웃을 보고 결정한다는 점에서 차이가 있습니다.
+
+

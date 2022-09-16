@@ -84,6 +84,7 @@ img:
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 비록 컴퓨터가 보기에 사진 데이터는 숫자의 행렬로 보이겠지만, **같은 고양이 사진끼리는 그 거리가 가깝지 않겠나?** 라는 아이디어에서 출발한 방법입니다. 그렇다면 여기서 사진 데이터 간의 거리는 어떻게 측정하는 것일까요? 
 
+
 <image>
 사진 -> 행렬 -> 벡터 -> 좌표 그림  
 </image>
@@ -108,5 +109,3 @@ img:
 {:style="text-align:center; margin-top:0px; margin-bottom:40px; margin-top:80px"}
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; K-Nearest Neighbor는 Nearest Neighbor 알고리즘과 거의 모든 부분에서 동일합니다. 그러나 Nearest Neighbor가 가장 가까운 이웃만을 보고 결정한다면, K-Nearest Neighbor는 가장 가까운 K명의 이웃을 보고 결정한다는 점에서 차이가 있습니다.
-
-

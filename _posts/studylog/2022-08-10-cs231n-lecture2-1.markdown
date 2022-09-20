@@ -84,11 +84,7 @@ img:
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 비록 컴퓨터가 보기에 사진 데이터는 숫자의 행렬로 보이겠지만, **같은 고양이 사진끼리는 그 거리가 가깝지 않겠나?** 라는 아이디어에서 출발한 방법입니다. 그렇다면 여기서 사진 데이터 간의 거리는 어떻게 측정하는 것일까요? 
 
-
-
-<image>
-사진 -> 행렬 -> 벡터 -> 좌표 그림  
-</image>
+![graph](/assets/img/2022-08-10/graph.png){: width="500"}{:style="display:block; margin-left:auto; margin-right:auto; margin-top:30px"}
 
 위 그림처럼 숫자 행렬을 쭉 펼쳐서 하나의 좌표로 만들면, 사진 데이터 한 장 마다 하나의 좌표를 얻을 수 있습니다. 그 좌표끼리의 거리가 가까울 수록 비슷한 사진으로 보곘다는 것이죠. 예를 들면 알지 못하는 사진이 새로 들어왔을 때, 이전에 학습해놨던 사진 데이터 중에 현재 사진과 가장 거리가 가까운 사진이 강아지 사진이었다면, 새로 들어온 사진도 강아지라고 예측하는 것입니다. 이 예측 과정에서 '거리가 가장 가까운 이웃'을 사용하기 때문에 이름이 nearest neighbor인 것입니다.
 {:style="opacity: 0.90"}
@@ -101,11 +97,10 @@ img:
 (B) K=1 그림 + 데이터 X
 </image>
 
-
 이 이상치는 nearest neighbor 알고리즘에 악영향을 끼칩니다. 예를 들어 새로운 사진 데이터를 예측해야 하는데, 이 사진 데이터가 그림 (B)의 X처럼 란색 outlier 근처에 위치하게 되었다고 합시다. 일반적으로 생각해 봤을 때 데이터 X는 대부분 초록색 데이터로 둘러싸여 있으므로, 초록색 class로 보는 것이 알맞을 겁니다. 그런데 nearest neighbor 알고리즘은 '가장 가까운 이웃' 하나만 보고 판단하므로, 이 데이터 X는 노란색 class 로 분류됩니다. 이런식으로 nearest neighbor 알고리즘은 훈련 데이터에 있는 몇 개의 outlier들로 인해 제대로 된 예측을 못하게 되는 문제가 발생할 수 있습니다. 그리고 이러한 문제를 해결하기 위해 나온 것이 K-Nearest Neighbor 알고리즘 입니다.
 {:style="opacity: 0.90; margin-bottom:80px"}
 
 ## K-Nearest Neighbor
 {:style="text-align:center; margin-top:0px; margin-bottom:40px; margin-top:80px"}
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; K-Nearest Neighbor는 Nearest Neighbor 알고리즘과 거의 모든 부분에서 동일합니다. 그러나 Nearest Neighbor가 가장 가까운 이웃만을 보고 결정한다면, K-Nearest Neighbor는 가장 가까운 K명의 이웃을 보고 결정한다는 점에서 차이가 있습니다.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; K-Nearest Neighbor는 nearest neighbor 알고리즘과 거의 모든 부분에서 동일합니다. 그러나 nearest neighbor가 가장 가까운 이웃만을 보고 결정한다면, K-Nearest Neighbor는 가장 가까운 K명의 이웃을 보고 결정한다는 점에서 차이가 있습니다. 

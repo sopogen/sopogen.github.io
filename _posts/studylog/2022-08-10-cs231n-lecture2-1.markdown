@@ -101,7 +101,15 @@ img:
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 그런데 빨간색으로 동그라미 친 그림 정중앙을 보면, 초록색 영역 안에 노란색 영역이 조그맣게 들어가 있는 것을 볼 수 있습니다. 이렇게 다소 뜬금없이 노란색 구간이 존재하게 된 이유는 해당 구간에 노란색 데이터 포인트가 하나 존재하기 때문입니다. 이렇게 전체 경향과 다소 맞지 않는 특이한 데이터를 이상치(outlier)라고 합니다. 
 {:style="opacity: 0.90"}
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 이 이상치는 nearest neighbor 알고리즘에 악영향을 끼칩니다. 예를 들어 새로운 사진 데이터가 무엇에 대한 사진인지를 맞춰야 하는데, 이 사진 데이터가 그림의 동그라미 구간안에 위치하게 되었다고 합시다. 일반적으로 생각해 봤을 때 데이터 해당는 대부분 노란색 데이터로 둘러싸여 있으므로, 노란색 class로 보는 것이 알맞을 겁니다. 그런데 nearest neighbor 알고리즘은 '가장 가까운 이웃' 하나만 보고 판단하므로, 이 사진은 노란색 class 로 분류됩니다. 이런식으로 nearest neighbor 알고리즘은 훈련 데이터에 있는 몇 개의 outlier들로 인해 제대로 된 예측을 못하게 되는 문제가 발생할 수 있습니다. 그리고 이러한 문제를 해결하기 위해 나온 것이 K-Nearest Neighbor 알고리즘 입니다.
+![nn_3](/assets/img/2022-08-10/nn_3.png){: width="300"}{:style="display:block; margin-left:auto; margin-right:auto; margin-top:30px"}
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 이 이상치는 nearest neighbor의 예측 결과에 악영향을 끼칩니다. 예를 들어 위 그림처럼 새로운 사진 데이터 X가 무엇에 대한 사진인지를 맞춰야 한다고 합시다. 이 사진 X는 사실은 초록색 class에 해당하는 사진이고, 그래서 초록색 영역 안쪽에 위치합니다.
+{:style="opacity: 0.90"}
+
+그런데 nearest neighbor 알고리즘에 따르면 학습에 사용한 데이터 중 '가장 가까운 이웃' 하나만 보고 판단하게 됩니다. 이 초록색 X에서 가장 가까운 데이터는 바로 옆의 노란색 점이므로, 이 사진은 노란색 class 로 분류됩니다. 초록색 영역 안에 속하는 사진임에도 불구하고, outlier 하나로 인해 제대로 된 예측을 못하게 된 것입니다. 
+{:style="opacity: 0.90"}
+
+이렇게 이상치에 따라 모델의 예측이 불안정해지는 특성을 ***not robust*** 라고 합니다. 그리고 이러한 문제를 해결하기 위해 나온 것이 K-Nearest Neighbor 알고리즘 입니다.
 {:style="opacity: 0.90; margin-bottom:80px"}
 ## K-Nearest Neighbor
 {:style="text-align:center; margin-top:80px; margin-bottom: 0px"}
@@ -119,7 +127,7 @@ img:
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 그런데 K=3의 경우를 살펴보면 조금 다릅니다. 노란색 훈련 데이터 포인트가 여전히 존재하지만, 그 주변의 예측값에 해당하는 면적은 초록색으로 나타납니다. 이것은 예측을 수행할 때 이웃하는 한 개의 데이터만 보는 것이 아니라 여러개를 보기 때문에, 노란색 데이터 옆의 초록색 데이터들이 예측에 반영되었기 떄문입니다.
 {:style="opacity: 0.90}
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 이와 비슷한 원리로 K=1일 때 삐죽삐죽하게 튀어나와있던 영역들이, K=3에서는 다소 완만하게 정돈이 된 모습을 보입니다. 이렇게 K-nearest neighbor는 outlier의 영향을 덜 받고, 좀 더 일관성 있는 결과를 제공할 수 있기 때문에 nearest neighbor보다 더 나은 모습을 보입니다.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 이와 비슷한 원리로 K=1일 때 삐죽삐죽하게 튀어나와있던 영역들이, K=3에서는 다소 완만하게 정돈이 된 모습을 보입니다. 이렇게 K-nearest neighbor는 outlier의 영향을 덜 받고, 좀 더 일관성 있는 결과를 제공할 수 있기 때문에 nearest neighbor보다 더 robust한 장점을 보입니다.
 {:style="opacity: 0.90; margin-bottom:80px"}
 
 

@@ -18,6 +18,7 @@ img:
 ![gpt-article](/assets/img/2022-09-30/gpt-article.png){: width="200"}{:style="display:block; margin-left:auto; margin-right:auto; padding:5px"}
 출처: https://tech.scatterlab.co.kr/gpt3-review/
 
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 위 예시는 GPT-3 인공지능 모델에 다양한 문제를 물어본 결과입니다. 일반적인 시사 대화도 사람과 비슷하게 대답하고, 낚시성 기사 생성에서는 인터넷 기자 저리가라 할 정도의 센스를 보여줍니다. 이처럼 현 수준의 인공지능은 인간 언어에 관련한 문제를 자유자재로 다룰 수 있는 수준에 도달해 있습니다.
 {:style="opacity: 0.90"}
 

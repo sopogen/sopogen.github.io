@@ -14,6 +14,7 @@ img:
 ## 특이점
 {:style="text-align:center; margin-top:0px; margin-bottom:30px"}
 
+
 ![gpt-conversation](/assets/img/2022-09-30/gpt-conversation.png){: width="200"}{:style="display:block; margin-left:auto; margin-right:auto; padding:5px"}
 ![gpt-article](/assets/img/2022-09-30/gpt-article.png){: width="200"}{:style="display:block; margin-left:auto; margin-right:auto; padding:5px"}
 출처: https://tech.scatterlab.co.kr/gpt3-review/

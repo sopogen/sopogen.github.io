@@ -16,7 +16,7 @@ img:
 #### - 마크 트웨인
 {:style="text-align:center; margin-top:0px; margin-bottom:100px"}
 
-**두려움**  
+#### **두려움**  
 {:style="text-align:center; margin-bottom:30px"}
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3살 무렵 소독약 냄새 나는 응급실 침대에서 뒤척이던 순간이 제 인생 첫 번째 기억입니다. 너무 자주 지냈던 나머지 각인이 됐던 것이리라 생각합니다. 어렸을 적의 저는 몸이 너무 안좋았던 나머지 뭔가 조금만 잘못 먹어도, 낯선 환경에서 조금만 컨디션이 안좋아져도 금새 건강이 악화되어 응급실 신세를 졌습니다. 부모님께서는 제가 유아기를 넘기지 못할 것이라고 자주 생각하셨다 합니다.  
 {:style="opacity: 0.90"}
@@ -27,7 +27,12 @@ img:
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;다만 새로운 것을 피하는 대신에, 이미 주어진 것에 대해서는 충실히 임했습니다. 그리고 이런 전략은 오랜 기간동안 충분히 성공적이었습니다. 주어진 대학 입시도 열심히 임했고, 입시에서 제가 얻을 수 있는 결과 중 가장 좋은 결과를 얻었습니다. 대학에 진학해서도 교환학생 등은 일절 시도하지 않았지만, 주어진 수업에 대해서는 줄곧 좋은 성과를 얻었습니다. 저는 이런 제 삶의 방식에 만족했고 제게 딱 맞는 방식이라고 생각했습니다.  
 {:style="opacity: 0.90; margin-bottom:80px"}
 
-**회고**  
+![sitting](/assets/img/2023-01-11/sitting.png)
+
+Generated Image by Stable Diffusion
+{:style="text-align:center; opacity: 0.60; margin-bottom:80px; font-size: 12px"}
+
+#### **회고**  
 {:style="text-align:center; margin-bottom:30px"}
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;경영학과 였던 저는 학과 수업의 일환으로 창업 수업을 수강했고, 해당 수업에서 저보다 더 어린 창업가를 만날 기회가 있었습니다. 우연히 그 창업가와 같은 조로 편성되었던 저는 평상시와 같이 해당 수업에서도 충실히 임했고, 수업의 로드가 커서 대부분의 사람들이 포기한 시점에서도 그와 함께 마지막까지 프로젝트를 책임졌습니다. 수업이 마무리 된 이후 그는 저에게 본인의 회사에서 책임자로서 같이 일할 것을 제안했습니다.  
@@ -39,8 +44,13 @@ img:
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;과거를 되짚어보니 그동안 놓쳐온 기회들이 눈에 들어왔습니다. 바쁘게 학원에 다니느라 거절한 유학은 동생에게 차례가 돌아가 그 어떤 학원보다 귀중한 경험을 주었습니다. 좋은 대학에 갈 기회를 얻기 위해 이과를 포기한 것은 반대로 제 배움의 기회를 제한했습니다. 스스로 현명했다고 생각한 제 삶의 궤도는 가장 안전한 길을 따라 나있었지만, 동시에 가장 빛나는 길을 항상 피해 나있었습니다. 
 {:style="opacity: 0.90; margin-bottom:80px"}
 
+![two_ways](/assets/img/2023-01-11/two_ways.png)
 
-**용기**  
+Generated Image by Stable Diffusion
+{:style="text-align:center; opacity: 0.60; margin-bottom:80px; font-size: 12px"}
+
+
+#### **용기**  
 {:style="text-align:center; margin-bottom:30px"}
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;더 이상 제가 고수해온 방식이 정답이 아니라는 것을 알게 됐습니다. 흘려보내기에는 너무나 빛나는 기회들이 많았고, 이를 잡으려면 때로는 불확실한 영역으로 몸을 던져야 한다는 것을 알았습니다. 

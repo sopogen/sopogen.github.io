@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "[쉽게 읽는 cs231n] Lecture 2: 컴퓨터는 사진을 알아볼 수 없다"
-date:   2022-08-10 12:00:00 +0800
+title:  "[쉽게 읽는 cs231n] 1. 컴퓨터는 사진을 알아볼 수 없다"
+date:   2023-03-10 12:00:00 +0800
 category: studylog
 tags: [blog, cs231n]
 comments: true
@@ -9,6 +9,8 @@ use_math: true
 img:
     path: /assets/img/
 ---
+본 포스트는 Stanford University CS231n: Deep Learning for Computer Vision 강의 내용을 풀어쓴 것임을 밝힙니다.
+{:style="text-align:center;opacity: 0.50; margin-bottom:30px"}
 
 ![quotes](/assets/img/quotation_mark.jpeg){: width="30"}{:style="display:block; margin-left:auto; margin-right:auto; margin-bottom:3px"}
 ## 컴퓨터는 사진을 알아볼 수 없다
@@ -130,5 +132,6 @@ img:
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 이와 비슷한 원리로 K=1일 때 삐죽삐죽하게 튀어나와있던 영역들이, K=3에서는 다소 완만하게 정돈이 된 모습을 보입니다. 이렇게 K-nearest neighbor는 outlier의 영향을 덜 받고, 좀 더 일관성 있는 결과를 제공할 수 있기 때문에 nearest neighbor보다 더 robust한 장점을 보입니다.
 {:style="opacity: 0.90; margin-bottom:80px"}
 
-
-
+---
+## References
+[Stanford CS231n - Lecture 2](https://www.youtube.com/watch?v=OoUX-nOEjG0&ab_channel=StanfordUniversitySchoolofEngineering)

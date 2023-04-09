@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "신호 데이터 전처리 in Python"
+title:  "신호 데이터 전처리 - 푸리에 변환"
 date:   2023-04-09 12:00:00 +0800
 category: studylog
 tags: [studylog, python]
@@ -140,6 +140,9 @@ plt.show()
 ![STFT2](/assets/img/2023-04-09/STFT2.png){: width="800"}{:style="display:block; margin-left:auto; margin-right:auto; padding:5px"}  
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 코드에 사용한 신호 데이터는 일정한 주파수가 계속되는 신호와, 시간에 따라 주파수가 점점 작아지는 신호의 합성 신호입니다. 단기 푸리에 변환을 통한 spectrogram을 확인해 보면, 시간에 따라 주파수가 다른 신호가 나타나는 것을 확인할 수 있으며, 시간에 따라 일정 주기의 신호만이 남는 사실 또한 알 수 있습니다.
+{:style="opacity: 0.90"}
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 이와 같은 푸리에 변환 이외에도, 웨이블릿 변환과 같은 자주 쓰이는 전처리 방법들이 존재합니다. 이에 대해서는 다음 포스트에서 다루도록 하겠습니다.
 {:style="opacity: 0.90"}
 
 ## References

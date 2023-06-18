@@ -11,8 +11,8 @@ img:
 ---
 ![quotes](/assets/img/quotation_mark.jpeg){: width="30"}{:style="display:block; margin-left:auto; margin-right:auto; margin-bottom:3px"}
 ## 새로운 프로그래밍 언어 중 가장 인기있는 것은 **영어**다
-{:style="text-align:center; margin-top:0px;}
-#### ***- Andrej Karpathy, 전 테슬라 AI lead***
+{:style="text-align:center; margin-top:0px"}
+#### ***- Andrej Karpathy, 전 테슬라 AI Senior Director***
 {:style="text-align:center; margin-top:0px; margin-bottom:60px"}
 
  생성형 AI는 더 이상 이미 우리 삶에 깊게 침투하고 있습니다. 비단 개발자 뿐만 아니라 전문직, 사무직도 ChatGPT를 사용해서 문서 작업을 하는 모습을 쉽게 찾아볼 수 있으며, 디자이너들이 Midjourney, Stable diffusion을 사용해서 이미지를 뽑아내는 것은 이제 드문 일이 아닙니다.

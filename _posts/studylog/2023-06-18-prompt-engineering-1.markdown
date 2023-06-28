@@ -96,7 +96,7 @@ GPT 모델은 학습 데이터를 참고해서, 문제와 비슷한 학습 데�
 {:style="opacity: 0.90;"}
 
 이미지 생성 모델과 텍스트 생성 모델의 프롬프트 간에는 말할 것도 없이 큰 차이가 존재하고, 같은 도메인의 생성 모델 안에서도 좋은 결과를 얻는 프롬프트는 다른 양상을 가지고 있습니다. **심지어 같은 모델이라도 버전에 따라 최적의 프롬프트가 달라질 수 있습니다.** 실제로 ChatGPT 같은 내에서도 GPT-3.5와 GPT-4 간에는 정말 큰 차이가 존재합니다.
-{:style="opacity: 0.90; margin-botton:30px"}
+{:style="opacity: 0.90; margin-botton:70px"}
 
 ![gpt3-bird](/assets/img/2023-06-18/gpt3-bird.png){: width="600"}{:style="display:block; margin-left:auto; margin-right:auto; margin-bottom:1px"}  
 ![gpt4-bird](/assets/img/2023-06-18/gpt4-bird.png){: width="600"}{:style="display:block; margin-left:auto; margin-right:auto; margin-bottom:1px"}  
@@ -111,7 +111,7 @@ GPT 모델은 학습 데이터를 참고해서, 문제와 비슷한 학습 데�
 {:style="text-align:center; margin-top:50px; margin-bottom:30px"}
 
 그렇다면 각 모델별로 최적화된 프롬프트를 사용하는 접근법은 어떻게 알아낼 수 있을까요? 각 모델에 대해 잘 이해하고 있으면 좋을까요? 안타깝게도 모델을 이해하는 것으로는 모델별로 최적의 프롬프트를 찾기에는 충분하지 않습니다. 현재 사용 중인 AI 모델의 구조를 아는 것은 어느 정도 도움이 되겠지만, 어떤 프롬프트를 사용했을 때 결과가 개선될 지는 해당 모델을 만든 당사자도 알기 어려운 정보입니다.  
-{:style="opacity: 0.90;"}
+{:style="opacity: 0.90; margin-botton:70px"}
 
 ![prompt2](/assets/img/2023-06-18/prompt-2.png){: width="600"}{:style="display:block; margin-left:auto; margin-right:auto; padding:5px"}   
 
@@ -142,16 +142,18 @@ GPT 모델은 학습 데이터를 참고해서, 문제와 비슷한 학습 데�
 {:style="opacity: 0.90"}
 
 예를 들어, chatGPT를 통해서 영어 문제를 만들어 주는 간단한 서비스를 만드는 경우를 생각해보겠습니다. 
-몇 가지 기능을 추가해서 좀 더 높은 수준의 문제를 만들어보고 싶습니다. 예컨대, 1. 토플 시험처럼 문제를 만들고,  2. 내가 문제를 맞추거나 틀리는 것에 따라 다음 문제의 난이도도 조정하는 기능도 추가해보고 싶습니다. 
+몇 가지 기능을 추가해서 좀 더 높은 수준의 문제를 만들어보고 싶습니다. 예컨대, 1. 토플 시험처럼 문제를 만들고,  2. 내가 문제를 맞추거나 틀리는 것에 따라 다음 문제의 난이도도 조정하는 기능도 추가해보고 싶습니다.
+{:style="opacity: 0.90"}
 
 위 요구사항을 전부 반영한 프롬프트는 아래와 같습니다. 
 별도의 프로그래밍 없이, 이 프롬프트에다가 사용자의 정답만 입력하면 바로 원하는 서비스 완성입니다!
+{:style="opacity: 0.90; margin-botton:70px"}
 
 ![prompt4](/assets/img/2023-06-18/prompt-4.png){: width="600"}{:style="display:block; margin-left:auto; margin-right:auto; padding:5px"}   
 
 그런데 이 프롬프트는 처음 몇 번에 대해서는 잘 작동하지만, 회차가 거듭될 수록 정확한 결과를 내지 못합니다. 
 예를 들어 문제를 틀려도 그 다음에 더 어려운 문제를 준다던가, 처음에 주었던 '토플 시험처럼 문제를 만들어라' 라는 명령을 잊는다던가 하는 문제가 발생합니다.  
-{:style="opacity: 0.90"}
+{:style="opacity: 0.90; margin-botton:70px"}
 
 ![prompt5](/assets/img/2023-06-18/prompt-5.png){: width="600"}{:style="display:block; margin-left:auto; margin-right:auto; padding:5px"}   
 
@@ -168,7 +170,7 @@ GPT 모델은 학습 데이터를 참고해서, 문제와 비슷한 학습 데�
 
 처음부터 정답을 받은 후에 사용자가 틀린 답을 입력하면 '아까 문제보다 더 쉬운 문제를 생성해줘' 라는 프롬프트를 한줄 추가하는 규칙만 있으면 되는 일입니다.
 실제로 이런 식으로 접근하면 프롬프트도 훨씬 짧아지고, 이전보다 훨씬 더 잘 동작하는 것을 확인할 수 있습니다.  
-{:style="opacity: 0.90"}
+{:style="opacity: 0.90; margin-botton:70px"}
 
 ![prompt6](/assets/img/2023-06-18/prompt-6.png){: width="600"}{:style="display:block; margin-left:auto; margin-right:auto; padding:5px"}   
 새로 작성한 프롬프트

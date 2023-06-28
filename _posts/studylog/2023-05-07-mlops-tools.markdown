@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "MLops를 위한 개발 도구 - 1"
+title:  "MLops를 위한 개발 도구"
 date:   2023-05-07 12:00:00 +0800
 category: studylog
 tags: [studylog, python]

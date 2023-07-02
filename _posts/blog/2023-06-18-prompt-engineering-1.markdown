@@ -1,6 +1,7 @@
 ---
 layout: post
-title:  "프롬프트 엔지니어로 살아남기 - 1 필요 역량"
+title:  "프롬프트 엔지니어로 살아남기"
+subtitle: "프롬프트 엔지니어 시리즈 1편"
 date:   2023-06-18 12:00:00 +0800
 category: studylog
 tags: [studylog]
@@ -10,7 +11,7 @@ img:
     path: /assets/img
 ---
 ![quotes](/assets/img/quotation_mark.jpeg){: width="30"}{:style="display:block; margin-left:auto; margin-right:auto; margin-bottom:3px"}
-## 새로운 프로그래밍 언어 중 가장 인기있는 것은 **영어**다
+## 새로운 프로그래밍 언어 중 가장 인기있는 것은 ***영어***다
 {:style="text-align:center; margin-top:0px"}
 #### ***- Andrej Karpathy, 전 테슬라 AI Senior Director***
 {:style="text-align:center; margin-top:0px; margin-bottom:60px"}

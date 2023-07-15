@@ -110,22 +110,31 @@ ChatGPT 사이트가 아닌 [이 링크](https://platform.openai.com/playground)
 그런데 위와 같이 'You are...' 를 포함하는 명령어는 ChatGPT에게 system 명령으로 전달됩니다. 따라서 많은 대화를 나누더라도 ChatGPT가 system 명령에 따라 일관성 있는 방식으로 대답하도록 할 수 있습니다.
 {:style="opacity: 0.90}
 
-## GPT는 그자리에서 배운다
+## GPT는 특수한 문제도 잘 풀수 있다.
 {:style="text-align:center; margin-top:50px; margin-bottom:30px"}
-위에서 말씀드린 것처럼, ChatGPT는 질문을 던지면 그 다음에 나올 대답 중 가장 높은 확률을 가지는 단어로 대답합니다. 그말인 즉슨 가장 일반적이고 많이 나올법한 방식으로만 대답한다는 것입니다. 그런데 만약 특수한 문제를 푼다고 할 때에는 
+위에서 말씀드린 것처럼, ChatGPT는 질문을 던지면 그 다음에 나올 대답 중 가장 높은 확률을 가지는 단어로 대답합니다. 그말인 즉슨 가장 일반적이고 많이 나올법한 방식으로만 대답한다는 것입니다. 
+그래서 특수한 문제를 푼다고 할 때에는 생각보다 잘 작동하지 않을 수도 있습니다.
+{:style="opacity: 0.90}
+
+그런데 우리는 ChatGPT에게 특수한 문제를 풀어주기를 기대할 때가 많습니다. 사실 일반적인 답변은 다른 검색 엔진에서도 쉽게 얻을 수 있으니깐요. 
+그렇다면 ChatGPT를 이용해서 어떻게 특수한 문제를 잘 풀수 있을까요?
+{:style="opacity: 0.90}
+
 
 
 #### 고기 잡아주기
 {:style="text-align:center; margin-top:50px; margin-bottom:30px"}
+In context learning
 
 
 #### 고기 잡는 법 가르치기
 {:style="text-align:center; margin-top:50px; margin-bottom:30px"}
+Formatting
 
 
 ---
 ## 결론
-다음에는 단순 프롬프트가 아니라 프로그램 내에 어떤식으로 사용할 수 있을지 알랴줌
+다음 포스팅에서는 단순한 프롬프트 말고 ChatGPT를 어떤식으로 기존 프로그램과 융합하여 사용할 수 있을지 알려 드립니다.
 플러그인 + API 
 
 ## References -->

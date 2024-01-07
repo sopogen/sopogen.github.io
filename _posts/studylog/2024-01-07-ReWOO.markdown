@@ -1,0 +1,144 @@
+---
+layout: post
+title:  "ReWOO agent 알아보기"
+date:   2024-01-07 12:00:00 +0800
+category: studylog
+tags: [studylog]
+comments: true
+use_math: true
+img:
+    path: /assets/img
+---
+## TL;DR
+{:style="text-align:center; margin-top:0px; margin-bottom:30px"}
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ReWOO는 기존 ReAcT 등의 LLM agent 방식에 비해 LLM을 사용하는 횟수를 최대한 줄일 수 있습니다. 덕분에 기존보다 훨씬 빠르게 전체 task를 완료할 수 있습니다.
+{:style="opacity: 0.90; margin-bottom:50px"}
+
+---
+
+## 기존 ReAcT Agent의 한계 
+{:style="text-align:center; margin-top:50px; margin-bottom:30px"}
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 기존에 LangChain 등의 LLM agent framework에서 기본적으로 채용하고 있는 방식은 ReAcT 방식입니다. ReAcT는 복잡한 Task를 수행하기 위해 LLM이 현재 수행해야 일이 무엇인지 생각하고(Thought), 그에 맞는 Tool에게 행동을 취하고(Action), 그 결과를 관찰하여(Observation), 복잡한 Task가 완료될 때 까지 이를 반복하는 방식입니다.
+{:style="opacity: 0.90"}
+
+![rewoo-1](/assets/img/2024-01-07/rewoo-1.png){: width="600"}{:style="display:block; margin-left:auto; margin-right:auto; padding:5px"} 
+
+위 예시는 'Apple Remote로 상호작용 가능한 프로그램을 조작할 수 있는 다른 장비가 무엇인가?'를 물어봤을 때의 예시입니다. 여기서 ReAcT 방식은 처음으로 무엇을 해야할지를 LLM에게 생각하게 하고(Thought), 우선 Apple Remote가 무엇인지 찾아야 한다는 것을 알아냈습니다. 그 후에 Search tool을 통해서 Apple Remote를 검색했고(Action), 그 결과 Apple Remote가 어떤 프로그램과 상호작용할 수 있는지 알아냈습니다(Observation). 그 다음단계에서는 다시 이 observation을 입력으로 사용해서 다음 thought을 진행합니다.
+{:style="opacity: 0.90"}
+
+이 ReAcT 방식은 LLM을 이용해 복잡한 문제들도 해결 할 수 있다는 장점이 있지만 여러 가지 단점도 있습니다. 가장 심각한 문제는 시간이 오래 걸린다는 점입니다. 위에서 보는 것 처럼 이전 단계가 완료되어야 다음 단계를 수행할 수 있으며, 매 단계에서 thought를 할 때 마다 LLM을 호출해야 합니다. 
+{:style="opacity: 0.90"}
+
+따라서 간단한 작업도 최소 수십초가 소요되며, 좀 더 복잡한 task의 경우 수 분 넘게 소요되는 경우가 많습니다. 또한 LLM을 자주 호출하는 만큼 더 많은 컴퓨팅 자원이나 API 호출 비용이 발생합니다. (실제로 LangChain을 openAI API로 사용해보면 어마어마하게 빠른 속도로 비용이 늘어납니다..)
+{:style="opacity: 0.90"}
+
+---
+## ReWOO
+{:style="text-align:center; margin-top:50px; margin-bottom:30px"}
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ReWOO는 이러한 문제점을 해결하기 위해, LLM의 사용을 최소화하는 Agent 방식을 고안했습니다. 처음에 전체 문제를 어떻게 풀지 정의하는 Planner와, 마지막에 모든 요소들이 갖춰졌을 때 문제를 해결하는 Solver를 구성하여 이 두 단계에서만 LLM을 사용하는 것입니다. 
+{:style="opacity: 0.90"}
+
+![rewoo-2](/assets/img/2024-01-07/rewoo-2.png){: width="600"}{:style="display:block; margin-left:auto; margin-right:auto; padding:5px"} 
+
+![rewoo-3](/assets/img/2024-01-07/rewoo-3.png){: width="600"}{:style="display:block; margin-left:auto; margin-right:auto; padding:5px"} 
+
+위 예시에서 볼 수 있는 것 처럼 Planner가 문제를 풀기위해 어떤 단계가 필요하고 각 단계에 어떤 근거(evidence)들이 필요한지를 계획합니다. 이 작업이 완료되면 Worker에 해당하는 검색, 계산 등의 tool들이 근거를 마련하기 위한 작업을 수행합니다. 이 때, 각 작업은 가능하다면 병렬적으로 처리됩니다. 마지막으로 모든 근거가 수집되면 Solver가 전체 계획과 근거들을 바탕으로 문제를 해결합니다.
+{:style="opacity: 0.90"}
+
+위에서 말씀드린 것 처럼, 이러한 구조로 agent를 구성하면 Planner와 Solver 단 두 단계에서만 기존의 LLM을 사용한 thought를 진행하는 셈입니다. 따라서 기존 ReAcT 방식에 비해 시간과 비용을 크게 절약할 수 있습니다. 
+{:style="opacity: 0.90"}
+
+또한 위 예시에서는 각 단계가 그 이전 단계에 의존하고 있기 때문에 병렬적으로 수행되기 어렵지만, 만약 병렬적으로 수행될 수 있는 경우에는 전체 task의 수행 속도가 훨씬 더 빨라지게 됩니다.
+{:style="opacity: 0.90; margin-bottom:50px"}
+
+---
+## ReWOO 사용해보기
+{:style="text-align:center; margin-top:50px; margin-bottom:30px"}
+
+현재 ReWOO는 Gentopia라는 LLM agent framework에서 공식적으로 제공되고 있습니다. Gentopia는 config file로 쉽게 agent를 생성하고, 이를 공유할 수 있는 프레임웍입니다. Gentopia로 ReWOO를 적용해보려면 아래 과정을 따라해주시면 됩니다. 
+{:style="opacity: 0.90"}
+
+우선 gentopia를 설치해줍니다.
+{:style="opacity: 0.90"}
+~~~shell
+pip install gentopia
+~~~
+
+그리고 새로운 Agent 생성을 위한 config yaml 파일을 하나 만들어줍니다. 아래 documentation 에서 ReWOO agent를 생성하기 위한 기본 파일을 확인하실 수 있습니다.  
+[Gentopia Documentation](https://gentopia.readthedocs.io/en/latest/quick_start.html#rewoo-agent)  
+
+저는 기본 agent에서 간단한 숫자 계산 기능을 추가하기 위해서 아래와 같이 config 파일을 만들었습니다.  
+{:style="opacity: 0.90"}
+~~~yml
+name: rewoo_template
+version: 0.0.1
+type: rewoo
+description: A rewoo agent capable of online web search and browsing, and also capable of simple coding and calculating tasks.
+target_tasks:
+  - web search
+  - web browsing
+  - calculation
+llm:
+  Planner:
+    model_name: gpt-3.5-turbo
+    params:
+      temperature: 0.0
+      top_p: 0.9
+      repetition_penalty: 1.0
+      max_tokens: 512
+  Solver:
+    model_name: gpt-3.5-turbo
+    params:
+      temperature: 0.0
+      top_p: 0.9
+      repetition_penalty: 1.0
+      max_tokens: 512
+prompt_template:
+  Planner: !prompt ZeroShotPlannerPrompt
+  Solver: !prompt ZeroShotSolverPrompt
+plugins:
+  - name: google_search
+  - name: web_page
+  - name: calculator
+~~~  
+주의하실 점은, max_token을 저처럼 512 이하로 줄이지 않으면 Solver부분에서 많은 양의 context input이 들어가기 때문에 chatGPT input token을 초과하기 쉽다는 것입니다. 적당한 수준으로 조절해주세요.
+{:style="opacity: 0.90"}
+
+마지막으로 아래와 같은 python 파일을 작성해주시면 끝입니다. <YOUR_API_KEY> 부분에는 각각 openai api key와 google search를 위한 serpapi api key를 넣어주세요. AgentAssmebler의 file에는 방금 만든 config 파일의 경로를 넣어주세요. Serpapi api key가 없으시면 serpapi 홈페이지에서 회원가입 후 발급받으실 수 있습니다. 
+
+~~~python
+import dotenv
+from gentopia import chat
+from gentopia.assembler.agent_assembler import AgentAssembler
+import os
+
+os.environ["OPENAI_API_KEY"] = str(
+    <YOUR_API_KEY>
+)
+os.environ["SERPAPI_API_KEY"] = str(
+    <YOUR_API_KEY>
+)
+dotenv.load_dotenv(".env")
+agent = AgentAssembler(file="rewoo.yaml").get_agent()
+
+chat(agent)
+~~~
+
+위 python 파일을 실행시키면 아래와 같은 화면이 나옵니다.  
+![rewoo-4](/assets/img/2024-01-07/rewoo-4.png){: width="600"}{:style="display:block; margin-left:auto; margin-right:auto; padding:5px"} 
+
+테스트를 위해 간단한 문제를 하나 입력해보겠습니다. 문제는 "Who is the founder of SpaceX and what is the square root of the birth year of his first wife?" 입니다.  
+![rewoo-5](/assets/img/2024-01-07/rewoo-5.png){: width="600"}{:style="display:block; margin-left:auto; margin-right:auto; padding:5px"} 
+![rewoo-6](/assets/img/2024-01-07/rewoo-6.png){: width="600"}{:style="display:block; margin-left:auto; margin-right:auto; padding:5px"} 
+
+위에 ReWOO에서 살펴봤던 것처럼 Planner와 Solver로 나누어서 문제를 해결하는 것을 확인할 수 있습니다. 또한 놀랄만큼 빠르게 문제를 해결하는데요, 기존에 똑같은 문제를 LangChain으로 풀면 20초 이상 걸리는데 반해 약 10초 안에 문제를 해결합니다. 위에 말씀드린 것 처럼 ReWOO 방식이 기존에 비해 속도에 이점이 있기 때문으로 보입니다.
+
+
+## References
+* Yao, Shunyu, et al. "ReAct: Synergizing Reasoning and Acting in Language Models." NeurIPS 2022 Foundation Models for Decision Making Workshop. 2022.  
+* Xu, Binfeng, et al. "ReWOO: Decoupling Reasoning from Observations for Efficient Augmented Language Models." arXiv preprint arXiv:2305.18323 (2023).  
+* Xu, Binfeng, et al. "Gentopia: A collaborative platform for tool-augmented llms." arXiv preprint arXiv:2308.04030 (2023).  
+* [Gentopia](https://github.com/Gentopia-AI/Gentopia)

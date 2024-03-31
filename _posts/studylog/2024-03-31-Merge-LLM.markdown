@@ -1,0 +1,72 @@
+---
+layout: post
+title:  "LLM 병합 방식"
+date:   2024-02-18 12:00:00 +0800
+category: studylog
+tags: [studylog]
+comments: true
+use_math: true
+img:
+    path: /assets/img
+---
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 최근 오픈 LLM 리더보드를 갱신하고 있는 신규 모델들의 공통점은, 기존의 foundation 모델을 각기 다른 방식으로 병합 및 변형해서 만든 모델이라는 점입니다. 이에 LLM 들이 기존에 어떤 병합 방식을 사용해서 성능을 높였는지 간단히 살펴보고, 그 원리를 알아보도록 하겠습니다.
+{:style="opacity: 0.90"}
+
+## MoE
+{:style="text-align:center; margin-top:50px; margin-bottom:30px"}
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MoE(Mixture of Expert) 방식은 Mistral 8x7b 모델에 활용된 방식입니다. 엄밀히 말하면 각기 다른 모델을 병합했다기 보단 한 개 모델의 구조를 변경한 것에 가깝지만, 향후 언급할 모델 병합 방식들의 모티브가 되었다고 볼 수 있어 소개하였습니다.
+
+![llm-merge-1](/assets/img/2024-03-31/llm-merge-1.png){: width="600"}{:style="display:block; margin-left:auto; margin-right:auto; padding:5px"}  
+
+MoE 방식은 모델의 한개 레이어 안에 여러개의 이른바 '전문가 레이어'를 만들어두고, 모델이 데이터에 따라 필요한 전문가 레이어를 선택해서 결과를 내도록 하는 방식입니다. Mistral 8x7b 모델의 경우에도, 7b 모델 내에서 8개의 전문가 레이어를 사용하기 때문에 이름이 ‘8x7b’ 인 것입니다.
+{:style="opacity: 0.90"}
+
+언틋보면 7b 모델을 8개나 겹쳐놓았기 떄문에 상당히 모델 사이즈가 크다고 생각될 수 있지만, 전체 모델에서 일부 레이어만 MoE 레이어를 사용하기 때문에, 모델 사이즈는 8*7=56b 보다 작은 47b 정도입니다.
+{:style="opacity: 0.90"}
+
+MoE 모델의 특징은, 모델 용량이 크지만, 실제 추론 시에 사용되는 부분은 MoE 레이어 내에서 하나의 레이어만 사용되기 떄문에 상대적으로 작다는 점입니다. 따라서 충분한 VRAM만 확보 된다면 같은 크기의 다른 모델보다 빠르게 결과 생성이 가능합니다.
+{:style="opacity: 0.90"}
+
+이 외에도 여러 대의 기기에 분산해서 수행하기에 유리하다는 특징도 있습니다. 각 기기에 7b 모델을 하나씩 돌려놓고, 아래와 같이 중간에 MoE 레이어에 해당하는 부분만 공유하면 되기 때문입니다.
+{:style="opacity: 0.90"}
+
+![llm-merge-2](/assets/img/2024-03-31/llm-merge-2.png){: width="600"}{:style="display:block; margin-left:auto; margin-right:auto; padding:5px"}  
+
+---
+## DUS
+{:style="text-align:center; margin-top:50px; margin-bottom:30px"}
+
+DUS는 2023년 말 국내기업 upstage에서 발표한 SOLAR 모델에서 사용된 기법입니다. SOLAR는 이 방법을 통해 기존 pre-trained model인 Qwen-14b와 Mistral-7b 모델을 병합하여 LLM 리더보드 1위를 차지했습니다.
+{:style="opacity: 0.90"}
+
+알려진 DUS방식은 생각보다 간단한 방식으로 이루어져있습니다. 바로 모델 구조를 복사한 후 **쌓아서 병합**하는 것입니다. 이 때, 병합되는 부분에 있는 몇 개 레이어를 제거하고 병합하기 떄문에 단순히 모델을 두번 태우는 것과는 차별점을 두었습니다.  
+{:style="opacity: 0.90"}
+
+![llm-merge-3](/assets/img/2024-03-31/llm-merge-3.png){: width="600"}{:style="display:block; margin-left:auto; margin-right:auto; padding:5px"} 
+
+DUS 방식의 가장 큰 장점은 별도로 모델 구조 변경 없이 높은 성능을 달성할 수 있다는 점입니다. 기존 Mistral 8x7b 구조는 모델 구조가 변경되어 파인 튜닝시에 이를 감안해야 하지만, DUS 방식은 몇 개 레이어가 삭제되는 것 외에는 모델 구조 변경이 없어서 기존의 다른 fine-tuned weight로 가져다가 쓸 수도 있습니다.  
+{:style="opacity: 0.90"}
+
+---
+## SLERP Merge
+{:style="text-align:center; margin-top:50px; margin-bottom:30px"}
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SLERP Merge 방식은 2023년 12월에 Open LLM 리더보드 1위를 달성한 Sakura-SOLAR 모델에서 사용된 방식입니다.
+{:style="opacity: 0.90"}
+
+SLERP는 구형 선형 보간법으로, 이전에도 다른 분야에서 많이 활용되던 기초적인 보간 방식 중 하나입니다. 구체적으로는 여러 개의 벡터를 normalize 한 이후에, 각도를 평균 내는 방식입니다. 이러한 방식을 이용해서 여러 개의 LLM을 하나의 LLM으로 병합한 것이 SLERP merge 입니다.
+{:style="opacity: 0.90"}
+
+![llm-merge-4](/assets/img/2024-03-31/llm-merge-4.png){: width="600"}{:style="display:block; margin-left:auto; margin-right:auto; padding:5px"} 
+
+SLERP 방식 또한 DUS 방식과 동일하게 별도의 모델 구조의 변경 없이 사용 가능하다는 장점이 있습니다. 그러나 병합하려는 두 모델의 구조가 동일해야만 병합이 가능한 한계점도 존재합니다. 
+
+
+## References
+- [Shazeer, Noam, et al. "Outrageously large neural networks: The sparsely-gated mixture-of-experts layer." *arXiv preprint arXiv:1701.06538* (2017).](https://arxiv.org/abs/1701.06538)
+- [Kim, Dahyun, et al. "Solar 10.7 b: Scaling large language models with simple yet effective depth up-scaling." *arXiv preprint arXiv:2312.15166* (2023).](https://arxiv.org/abs/2312.15166)
+- [https://www.unite.ai/ko/mistral-ais-전문가의-최신-혼합물-moe-8x7b-모델/](https://www.unite.ai/ko/mistral-ais-%EC%A0%84%EB%AC%B8%EA%B0%80%EC%9D%98-%EC%B5%9C%EC%8B%A0-%ED%98%BC%ED%95%A9%EB%AC%BC-moe-8x7b-%EB%AA%A8%EB%8D%B8/)
+- https://slgero.medium.com/merge-large-language-models-29897aeb1d1a
+- https://kyujinpy.tistory.com/122
